@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  gcs:
+    image: fsouza/fake-gcs-server
+    tty: true
+    ports:
+      - 4443:4443
+    volumes:
+      - ./data:/data/[bucket name]
+      - ./storage:/storage
+    command: -scheme http -public-host ${URL:-localhost}:4443
